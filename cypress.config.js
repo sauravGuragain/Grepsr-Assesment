@@ -1,28 +1,19 @@
-const { defineConfig } = require("cypress");
-const mochawesome = require("mochawesome");
+const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
-  reporter: "mochawesome",
-  reporterOptions: {
-    reportDir: "cypress/reports/mochawesome-report",
-    overwrite: true,
-    html: true,
-    json: true,
-  },
-
-  e2e: {
-    specPattern: "cypress/e2e/**/*.cy.js",
+   e2e: {
     setupNodeEvents(on, config) {
-      
-      on("after:run", (results) => {
-        console.log(`Test run complete: ${results.totalPassed} passed, ${results.totalFailed} failed`);
-      });
+      require('cypress-mochawesome-reporter/plugin')(on);
 
-      on("before:run", (details) => {
-        console.log("Starting test run for spec(s):", details);
-      });
-      
-      return config;
     },
+    specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+    supportFile: 'cypress/support/e2e.js'
   },
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    reportDir: 'cypress/reports/mochawesome-report',
+    overwrite: false,
+    html: false,
+    json: true
+  }
 });

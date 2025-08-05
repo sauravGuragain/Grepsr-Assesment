@@ -1,0 +1,11 @@
+# Ignore node_modules folder
+node_modules/
+
+# Ignore Cypress reports (optional)
+cypress/reports/
+
+# Ignore log files
+*.log
+
+# Ignore environment files (if any)
+.env

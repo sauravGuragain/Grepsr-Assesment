@@ -5,9 +5,9 @@
     "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2025-08-05T10:25:05.013Z",
-    "end": "2025-08-05T10:25:20.008Z",
-    "duration": 14995,
+    "start": "2025-08-05T10:49:27.022Z",
+    "end": "2025-08-05T10:49:39.761Z",
+    "duration": 12739,
     "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "d820ce18-8d0e-4f65-8f9b-6e6483d88578",
+      "uuid": "ed776817-aad3-44f7-b8c8-028eea2d1d95",
       "title": "",
       "fullFile": "cypress\\e2e\\smoke\\signup_login.cy.js",
       "file": "cypress\\e2e\\smoke\\signup_login.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "6ebd2be8-0bbd-4d88-9219-0bd0b0c44583",
+          "uuid": "98d0ffa9-04b7-4b6c-a0d5-75ed681057af",
           "title": "User SignUp and Login Flow",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Sign Up - Create new user",
               "fullTitle": "User SignUp and Login Flow Sign Up - Create new user",
               "timedOut": null,
-              "duration": 7592,
+              "duration": 6079,
               "state": "passed",
               "speed": "medium",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "registerPage.visit();\nregisterPage.assertRegisterPageVisible();\nregisterPage.fillForm(userData.email, userData.password, userData.name);\nregisterPage.submit();\ncy.contains('User account created successfully').should('be.visible');",
               "err": {},
-              "uuid": "fcf94582-d99b-40bd-ab3f-66b10c99f0ab",
-              "parentUUID": "6ebd2be8-0bbd-4d88-9219-0bd0b0c44583",
+              "uuid": "e178b57d-ef0b-4338-8834-5630ef362747",
+              "parentUUID": "98d0ffa9-04b7-4b6c-a0d5-75ed681057af",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "Login - Use signed up user",
               "fullTitle": "User SignUp and Login Flow Login - Use signed up user",
               "timedOut": null,
-              "duration": 4684,
+              "duration": 4089,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -65,21 +65,21 @@
               "context": null,
               "code": "loginPage.visit();\nloginPage.assertLoginPageVisible();\nloginPage.login(userData.email, userData.password);\ncy.contains('Notes').should('be.visible');",
               "err": {},
-              "uuid": "9c8fadd3-f54b-4216-8949-f5ef4530d23f",
-              "parentUUID": "6ebd2be8-0bbd-4d88-9219-0bd0b0c44583",
+              "uuid": "5db705f0-f9d1-4d4b-8fe3-b0b84e88d8d2",
+              "parentUUID": "98d0ffa9-04b7-4b6c-a0d5-75ed681057af",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "fcf94582-d99b-40bd-ab3f-66b10c99f0ab",
-            "9c8fadd3-f54b-4216-8949-f5ef4530d23f"
+            "e178b57d-ef0b-4338-8834-5630ef362747",
+            "5db705f0-f9d1-4d4b-8fe3-b0b84e88d8d2"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 12276,
+          "duration": 10168,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -103,7 +103,7 @@
       "options": {
         "quiet": false,
         "reportFilename": "mochawesome",
-        "saveHtml": true,
+        "saveHtml": false,
         "saveJson": true,
         "consoleReporter": "spec",
         "useInlineDiffs": false,
@@ -114,8 +114,8 @@
     "marge": {
       "options": {
         "reportDir": "cypress/reports/mochawesome-report",
-        "overwrite": true,
-        "html": true,
+        "overwrite": false,
+        "html": false,
         "json": true
       },
       "version": "6.2.0"

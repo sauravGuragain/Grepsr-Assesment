@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-08-05T10:48:36.702Z",
+    "end": "2025-08-05T10:49:00.917Z",
+    "duration": 24215,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "a8b08dc6-ca73-4ee7-8530-0e9302495212",
+      "title": "",
+      "fullFile": "cypress\\e2e\\regression\\notesCRUD.cy.js",
+      "file": "cypress\\e2e\\regression\\notesCRUD.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "328dd77a-63f3-436a-87fd-91cbdd2ed704",
+          "title": "Notes CRUD Flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "creates, updates, and deletes a note",
+              "fullTitle": "Notes CRUD Flow creates, updates, and deletes a note",
+              "timedOut": null,
+              "duration": 18814,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "title = _faker.faker.lorem.words(4);\ndescription = _faker.faker.lorem.sentences(2);\nupdatedTitle = _faker.faker.lorem.words(4);\nupdatedDescription = _faker.faker.lorem.sentences(2);\n_NotesPage.notesPage.addNote('Work', false, title, description);\n_NotesPage.notesPage.assertNoteExists(title, description);\n_NotesPage.notesPage.editNote(title, updatedTitle, updatedDescription);\n_NotesPage.notesPage.assertNoteExists(updatedTitle, updatedDescription);\n_NotesPage.notesPage.deleteNote(updatedTitle);\n_NotesPage.notesPage.assertNoteDoesNotExist(updatedTitle);",
+              "err": {},
+              "uuid": "fc30d02c-f38a-45d3-87a7-a5fbd072c55a",
+              "parentUUID": "328dd77a-63f3-436a-87fd-91cbdd2ed704",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fc30d02c-f38a-45d3-87a7-a5fbd072c55a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 18814,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome-report",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
