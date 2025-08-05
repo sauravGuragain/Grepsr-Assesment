@@ -1,6 +1,9 @@
-import SignUpPage from '../pageObjects/SignUpPage';
-import LoginPage from '../pageObjects/LoginPage';
+import RegisterPage from '../../support/pageObjects/RegisterPage';
+import LoginPage from '../../support/pageObjects/LoginPage';
 import { faker } from '@faker-js/faker';
+
+const registerPage = new RegisterPage();
+const loginPage = new LoginPage();
 
 describe('Sign Up and Login Flow', () => {
   const user = {
@@ -10,15 +13,15 @@ describe('Sign Up and Login Flow', () => {
   };
 
   it('should allow user to sign up', () => {
-    SignUpPage.visit();
-    SignUpPage.fillForm(user);
-    SignUpPage.submit();
+    registerPage.visit();
+    registerPage.fillForm(user.email, user.password, user.name);
+    registerPage.submit();
     cy.contains('User account created successfully').should('be.visible');
   });
 
   it('should allow user to login with same credentials', () => {
-    LoginPage.visit();
-    LoginPage.login(user);
-    cy.contains('My Notes').should('be.visible');
-  });
+  loginPage.visit();
+  loginPage.login(user.email, user.password);
+  cy.contains('My Notes').should('be.visible');
+});
 });
