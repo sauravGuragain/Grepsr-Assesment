@@ -3,7 +3,7 @@ name: Run Newman Tests
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   run-api-tests:
@@ -11,11 +11,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/upload-artifact@v4
-
+        uses: actions/checkout@v3
 
       - name: Install Node.js
-        uses: actions/upload-artifact@v4
+        uses: actions/setup-node@v3
         with:
           node-version: 20
 
