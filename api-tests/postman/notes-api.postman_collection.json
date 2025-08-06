@@ -1,0 +1,347 @@
+{
+	"info": {
+		"_postman_id": "5dcbda04-6e7d-4531-8335-14fb0ae65605",
+		"name": "Notes API Automation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47355155",
+		"_collection_link": "https://guragainsaurav51-5532347.postman.co/workspace/Saurav-Guragain's-Workspace~02dac453-b5f8-441f-88f2-09270aa149b4/collection/47355155-5dcbda04-6e7d-4531-8335-14fb0ae65605?action=share&source=collection_link&creator=47355155"
+	},
+	"item": [
+		{
+			"name": "Create Note",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 or 201\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains a created note object\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"    pm.expect(jsonData).to.have.property(\"data\");\r",
+							"    pm.expect(jsonData.data).to.have.property(\"id\");\r",
+							"\r",
+							"    pm.environment.set(\"noteId\", jsonData.data.id);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "23685a15de7446079ae070763f048f285e3e07e0e48b4e358326280cffe25a08",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Test Note\",\r\n  \"description\": \"This is a test note\",\r\n  \"category\": \"Home\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/notes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Notes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response structure is correct\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"    pm.expect(jsonData).to.have.property(\"data\");\r",
+							"    pm.expect(jsonData.data).to.be.an(\"array\");\r",
+							"\r",
+							"    if (jsonData.data.length > 0) {\r",
+							"        const firstNote = jsonData.data[0];\r",
+							"        pm.expect(firstNote).to.have.property(\"id\");\r",
+							"        pm.expect(firstNote).to.have.property(\"title\");\r",
+							"        pm.expect(firstNote).to.have.property(\"description\");\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/notes/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"notes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Note by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains a note object\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"    pm.expect(jsonData).to.have.property(\"data\");\r",
+							"    pm.expect(jsonData.data).to.be.an(\"object\");\r",
+							"\r",
+							"    pm.expect(jsonData.data).to.have.property(\"id\");\r",
+							"    pm.expect(jsonData.data).to.have.property(\"title\");\r",
+							"    pm.expect(jsonData.data).to.have.property(\"description\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/notes/6892d7ff99d200028b8fd3b9",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"notes",
+						"6892d7ff99d200028b8fd3b9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Note",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains updated note object\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"    pm.expect(jsonData).to.have.property(\"data\");\r",
+							"\r",
+							"    pm.expect(jsonData.data).to.have.property(\"id\");\r",
+							"    pm.expect(jsonData.data).to.have.property(\"title\", \"Updated Test Note\");\r",
+							"    pm.expect(jsonData.data).to.have.property(\"description\", \"This note has been updated\");\r",
+							"    pm.expect(jsonData.data).to.have.property(\"category\", \"Work\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Updated Test Note\",\r\n  \"description\": \"This note has been updated\",\r\n  \"category\": \"Work\",\r\n  \"completed\": false\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/notes/6892d34899d200028b8fd209",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"notes",
+						"6892d34899d200028b8fd209"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Note",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200, 204 or 404\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 204, 404]);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"    pm.test(\"Note not found for deletion\", function () {\r",
+							"        const jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData).to.have.property(\"success\", false);\r",
+							"    });\r",
+							"} else {\r",
+							"    pm.test(\"Response indicates successful deletion\", function () {\r",
+							"        const jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData).to.have.property(\"success\", true);\r",
+							"        pm.expect(jsonData).to.have.property(\"message\").that.includes(\"deleted\");\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"success\": true,\r\n  \"status\": 200,\r\n  \"message\": \"Note deleted successfully\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/notes/6892254999d200028b8f7c77",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"notes",
+						"6892254999d200028b8f7c77"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "23685a15de7446079ae070763f048f285e3e07e0e48b4e358326280cffe25a08",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "noteId",
+			"value": ""
+		}
+	]
+}

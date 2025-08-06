@@ -9,3 +9,5 @@ cypress/reports/
 
 # Ignore environment files (if any)
 .env
+
+newman-report.html
